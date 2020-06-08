@@ -10,11 +10,14 @@ export default function Signup() {
             <img className='img' src={img} alt='logo'/>
             <div className='container signup form-group' >
                 <h1>MobbyPark</h1>
-                <input className='form-control' type="text" name="username" placeholder="username"/>
+                <input className='form-control' type="number" placeholder="Phone no"/>
                 <br/>
-                <input className='form-control' type="password" name="password" placeholder="password"/>
+                <button id='button' className ='btn-primary btn-lg '>Send OTP</button>
+            </div>
+            <div className='container signup form-group'>
+                <input className='form-control' type="number" placeholder="Enter OTP"/>
                 <br/>
-                <button id='button' className ='btn-primary btn-lg btn-block'>Sign up</button>
+                <button className ='btn-success btn-lg '>Verify</button>
             </div>
         </div>
         
