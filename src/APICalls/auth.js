@@ -30,8 +30,8 @@ export const Logout = next => {
     }
 };
 //GET USER
-export const findUser = (operatorId) => {
-    return fetch(`${API}/api/operator/auth/operator${operatorId}`,{
+export const getOperatorById = (operatorId) => {
+    return fetch(`${API}/api/operator/auth/operator/${operatorId}`,{
         method:"GET"
     }).then(response => {
         return response.json()

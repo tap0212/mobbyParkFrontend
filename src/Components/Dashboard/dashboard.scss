@@ -1,0 +1,92 @@
+.dashboard-container{
+    margin-top: 80px;
+        margin-left: 280px;
+    .operator{
+        
+        padding: 1%;
+        h2{
+            font-weight: 300;
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+    .capacity{
+        border: 1px solid black;
+        text-align: center;
+    
+        width: 41vw;
+        margin-top: 7vh;
+        border-radius: 7px;
+        background: #ffffff;
+        box-shadow:  7px 7px 14px #e0e0e0, 
+                     -7px -7px 14px #ffffff;
+        h2, h4{
+            font-weight: 400;
+        }
+        .car, .bike{
+            width: 20vw;
+            height: 15vh;
+        }       
+    }
+    @media only screen and (min-width:1400px){
+        .capacity{
+            margin-left: 25vw;
+        }
+    }
+    .capacity:hover{
+        cursor: pointer;
+        border-radius: 7px;
+        background: #ffffff;
+        box-shadow:  14px 14px 28px #e0e0e0, 
+                      -14px -14px 28px #ffffff;
+    }
+  
+}
+
+.pricing{
+    margin-top: 5vh;
+    text-align: center;
+    width: 60vw;
+    margin-left: 20vw;
+    h2{
+        font-weight: 300;
+        margin-bottom: 5vh;
+    }
+    .weekend{
+        h3{
+            font-weight: 300;
+            margin-bottom: 4vh;
+        }
+    }
+}
+
+@media only screen and (max-width:500px){
+    .dashboard-container{
+        width: 70vw;
+        .operator{
+            h2{
+                font-size: 1em;
+            }
+        }
+    }
+    .capacity{
+        margin-left: 5vw;
+        h2, h4{
+            font-size: 1em;
+        }
+    }
+    .pricing{
+        h2{
+            font-size: 2em;
+            margin-bottom: 3vh;
+        }
+        .weekend{
+            h3{
+                font-size: 1.5em;
+                margin-bottom: 2vh;
+            }
+        }
+    }
+}

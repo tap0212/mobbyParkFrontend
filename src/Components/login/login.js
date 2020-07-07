@@ -44,7 +44,7 @@ const onSubmit = event => {
 
 const performRedirect = () => {
     if(didRedirect){
-            return <Redirect to='/dashboard'></Redirect> 
+            return <Redirect to='/schedule'></Redirect> 
     }
 }
 

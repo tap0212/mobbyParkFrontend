@@ -15,16 +15,20 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
 import PinDropTwoToneIcon from '@material-ui/icons/PinDropTwoTone';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import AccountBalanceWalletTwoToneIcon from '@material-ui/icons/AccountBalanceWalletTwoTone';
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
+import '../../../node_modules/react-responsive-modal/styles.css';
 
-import {isAuthenticated} from '../../APICalls/auth'
-//const {user, token} = isAuthenticated()
+import {isAuthenticated, Logout} from '../../APICalls/auth'
+import {Link, Redirect} from 'react-router-dom'
 const drawerWidth = 240;
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,7 +95,10 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
+  const [redirect, setRedirect] = React.useState(false)
+
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -102,9 +109,18 @@ export default function MiniDrawer() {
   };
 
   const handleLogout = () => {
-
+    Logout(() => {
+      setRedirect(true)
+    })
   }
 
+  const handleRedirect = () => {
+    if(redirect){
+      return (
+        <Redirect to="/" />
+      )
+    }
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -151,36 +167,57 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-            <ListItem button>
-              <ListItemIcon><DashboardTwoToneIcon /></ListItemIcon>
-              <ListItemText>Dashboard</ListItemText>
-            </ListItem>
+            <Link to="dashboard" >
+              <ListItem button>
+                <ListItemIcon><DashboardTwoToneIcon /></ListItemIcon>
+                <ListItemText>Dashboard</ListItemText>
+              </ListItem>
+            </Link>
 
-            <ListItem button>
-              <ListItemIcon><PinDropTwoToneIcon /></ListItemIcon>
-              <ListItemText>Parking Area</ListItemText>
-            </ListItem>
+            <Link to="parking" >
+              <ListItem button>
+                <ListItemIcon><PinDropTwoToneIcon /></ListItemIcon>
+                <ListItemText>Parking Area</ListItemText>
+              </ListItem>
+            </Link>
 
-            <ListItem button>
+          <Link to="/schedule" >
+          <ListItem button>
               <ListItemIcon><CalendarTodayTwoToneIcon /></ListItemIcon>
               <ListItemText>Schedule</ListItemText>
             </ListItem>
+          </Link>
 
-            <ListItem button>
-              <ListItemIcon><AccountBalanceWalletTwoToneIcon /></ListItemIcon>
-              <ListItemText>Payments</ListItemText>
-            </ListItem>
+            <Link to="">
+              <ListItem button>
+                <ListItemIcon><AccountBalanceWalletTwoToneIcon /></ListItemIcon>
+                <ListItemText>Payments</ListItemText>
+              </ListItem>
+            </Link>
+
+           <Link to="employee">
+           <ListItem button>
+                <ListItemIcon><AddCircleTwoToneIcon /></ListItemIcon>
+                <ListItemText>Employees</ListItemText>
+              </ListItem>
+           </Link>
+
+
           {
-             true && 
+             isAuthenticated() && 
             <ListItem button onClick={handleLogout}>
               <ListItemIcon><ExitToAppTwoToneIcon /></ListItemIcon>
               <ListItemText>Logout</ListItemText>
             </ListItem>
           }
         </List>
-
+          {handleRedirect()}
       </Drawer>
      
+
+
+
+
     </div>
   );
 }
